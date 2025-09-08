@@ -1,0 +1,2004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nethani Rohit Chandra Maharshi - Portfolio</title>
+
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <style>
+        /* Base Theme Variables (Dark and Light) */
+        :root {
+            /* Default Dark Base Theme */
+            --dark-bg-base: #0f172a;
+            --dark-second-bg-base: #1e293b;
+            --dark-text-base: #f8fafc;
+            --dark-disable-base: #94a3b8;
+
+            /* Default Light Base Theme */
+            --light-bg-base: #ffffff;
+            --light-second-bg-base: #f0f4f8;
+            --light-text-base: #1a202c;
+            --light-disable-base: #718096;
+
+            /* Current active theme variables (will be set by JS) */
+            --bg-color: var(--dark-bg-base);
+            --second-bg-color: var(--dark-second-bg-base);
+            --text-color: var(--dark-text-base);
+            --disable-color: var(--dark-disable-base);
+
+            /* Main accent color (default green) */
+            --main-color: #22c55e;
+            --main-color-rgb: 34, 197, 94;
+        }
+
+        /* Accent color overrides for --main-color */
+        body.accent-blue {
+            --main-color: #3b82f6;
+            --main-color-rgb: 59, 130, 246;
+        }
+        body.accent-black-white {
+            --main-color: #ffffff;
+            --main-color-rgb: 255, 255, 255;
+        }
+        body.accent-orange {
+            --main-color: #ff9800;
+            --main-color-rgb: 255, 152, 0;
+        }
+        body.accent-pink {
+            --main-color: #e91e63;
+            --main-color-rgb: 233, 30, 99;
+        }
+        body.accent-red {
+            --main-color: #e53935;
+            --main-color-rgb: 229, 57, 53;
+        }
+        body.accent-purple {
+            --main-color: #9c27b0; /* Deep Purple */
+            --main-color-rgb: 156, 39, 176;
+        }
+        body.accent-teal {
+            --main-color: #009688; /* Teal */
+            --main-color-rgb: 0, 150, 136;
+        }
+        body.accent-gold {
+            --main-color: #ffc107; /* Gold */
+            --main-color-rgb: 255, 193, 7;
+        }
+
+        /* Base theme overrides (Dark/Light) */
+        body.base-light {
+            --bg-color: var(--light-bg-base);
+            --second-bg-color: var(--light-second-bg-base);
+            --text-color: var(--light-text-base);
+            --disable-color: var(--light-disable-base);
+        }
+
+        body.base-dark {
+            --bg-color: var(--dark-bg-base);
+            --second-bg-color: var(--dark-second-bg-base);
+            --text-color: var(--dark-text-base);
+            --disable-color: var(--dark-disable-base);
+        }
+
+        /* Base Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: "Poppins", sans-serif;
+        }
+        html {
+            font-size: 62.5%; /* 1rem = 10px */
+            scroll-behavior: smooth;
+        }
+        body {
+            color: var(--text-color); /* Use text-color variable */
+            background: var(--bg-color);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            transition: background 0.5s ease, color 0.5s ease; /* Smooth theme transition */
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 9%;
+            background: rgba(15, 23, 42, 0.75); /* semi-transparent for blur effect */
+            backdrop-filter: blur(8px); /* glassmorphism */
+            box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            transition: 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .logo {
+            font-size: 3.2rem;
+            color: var(--main-color);
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        nav a {
+            position: relative;
+            font-size: 1.8rem;
+            color: var(--text-color); /* Use text-color */
+            font-weight: 500;
+            margin-left: 3rem;
+            transition: 0.3s;
+            padding-bottom: 0.3rem;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 0;
+            background-color: var(--main-color);
+            transition: width 0.4s ease;
+        }
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+        nav a:hover,
+        nav a.active {
+            color: var(--main-color);
+        }
+        #menu-icon {
+            font-size: 4rem;
+            display: none; /* Hidden by default, show on small screens */
+            cursor: pointer;
+            color: var(--text-color); /* Use text-color */
+        }
+
+        /* Section Global Styles */
+        section {
+            position: absolute; /* Changed to absolute to allow sections to stack and be controlled by JS visibility */
+            width: 100%;
+            height: 100%; /* Take full viewport height */
+            padding: 10rem 9% 2rem;
+            background: var(--bg-color);
+            visibility: hidden; /* Hidden by default */
+            opacity: 0;
+            overflow-y: auto; /* Allow scrolling within section if content overflows */
+            overflow-x: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            top: 0; /* Align to top */
+            left: 0; /* Align to left */
+        }
+        section.active {
+            visibility: visible;
+            opacity: 1;
+            position: relative; /* Make active section part of flow, others remain absolute/hidden */
+            height: auto; /* Allow content to dictate height when active */
+        }
+
+        /* Home Section */
+        .home {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center content horizontally */
+            gap: 5rem;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            min-height: 100vh; /* Ensure it takes full viewport height */
+        }
+        .home-detail {
+            flex: 1 1 45rem; /* Flexible width for details */
+            max-width: 60rem; /* Limit max width */
+        }
+        .home-detail h1 {
+            font-size: clamp(3.5rem, 10vw, 5.5rem);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .home-detail h2 {
+            display: inline-block;
+            font-size: clamp(2.5rem, 6vw, 3.8rem); /* Adjusted clamp for h2 */
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        .home-detail h2 span {
+            position: relative;
+            display: inline-block;
+            color: transparent;
+            -webkit-text-stroke: .07rem var(--main-color);
+            animation: display-text 16s linear infinite; /* Adjusted duration based on 4 spans * 4s per span */
+            animation-delay: calc(-4s * var(--i));
+        }
+        @keyframes display-text {
+            0%, 25% { display: inline-block; } /* Show for 25% of the time */
+            25.01%, 100% { display: none; } /* Hide afterwards */
+        }
+        .home-detail h2 span::before {
+            content: attr(data-text);
+            position: absolute;
+            width: 0;
+            border-right: 0.2rem solid var(--main-color);
+            color: var(--main-color);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: fill-text 4s linear forwards infinite;
+        }
+        @keyframes fill-text {
+            0% { width: 0; }
+            70% { width: 100%; }
+            90%, 100% { width: 100%; border-right: none; } /* Stop typing and remove cursor */
+        }
+        .home-detail p {
+            font-size: 1.7rem;
+            margin: 1.5rem 0 3rem;
+            line-height: 1.6;
+            color: var(--disable-color);
+        }
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 3.5rem;
+            background: var(--main-color);
+            border: .2rem solid var(--main-color);
+            border-radius: 4rem;
+            box-shadow: 0 0 1rem var(--main-color);
+            font-size: 1.8rem;
+            color: var(--bg-color); /* Button text color based on background */
+            font-weight: 600;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: transparent;
+            color: var(--main-color);
+            box-shadow: none;
+        }
+        .btn-sci {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap; /* Allow social icons to wrap if needed */
+            gap: 1.5rem;
+        }
+        .sci a {
+            display: inline-flex; /* Use inline-flex for centering icon */
+            justify-content: center;
+            align-items: center;
+            width: 4.5rem; /* Fixed width/height for circular icon */
+            height: 4.5rem;
+            border: 0.2rem solid var(--main-color);
+            border-radius: 50%;
+            font-size: 2.2rem;
+            color: var(--main-color);
+            transition: 0.5s;
+        }
+        .sci a:hover {
+            background: var(--main-color);
+            color: var(--bg-color); /* Icon color on hover */
+            box-shadow: 0 0 1.2rem var(--main-color);
+        }
+       .home-img {
+    flex: 1 1 40rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem; /* Space from text on smaller screens */
+}
+
+.home-img .img-box {
+    position: relative;
+    width: 35vw; /* Adjusted to viewport width */
+    height: 35vw; /* Make it proportional */
+    max-width: 45rem; /* Max size for image box */
+    max-height: 45rem;
+    border-radius: 50%;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: conic-gradient(transparent, transparent, transparent, var(--main-color));
+    /* Removed animation to stop rotation */
+    /* animation: rotate-border 10s linear infinite; */
+}
+
+.home-img .img-box::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(transparent, transparent, transparent, var(--main-color));
+    /* Removed animation to stop rotation */
+    /* animation: rotate-border 10s linear infinite; */
+    /* animation-delay: -5s; */
+}
+
+.home-img .img-box .img-item {
+    position: relative;
+    width: calc(100% - 1rem); /* Inner circle slightly smaller than border */
+    height: calc(100% - 1rem);
+    background: var(--bg-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Added for consistent centering */
+    overflow: hidden;
+}
+
+.home-img .img-box .img-item img {
+    position: absolute;
+    top: 50%; /* Center image vertically */
+    left: 50%; /* Center image horizontally */
+    transform: translate(-50%, -50%); /* Simplified: removed redundant rotate(0deg) */
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: grayscale(10%); /* Subtle desaturation */
+    transition: filter 0.3s ease;
+}
+
+.home-img .img-box .img-item img:hover {
+    filter: grayscale(0%); /* Full color on hover */
+}
+        /* About Section */
+        .about-section {
+            background-color: var(--bg-color);
+            padding: 8rem 9%; /* Consistent padding */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .container {
+            max-width: 1200px; /* Increased max-width for better content display */
+            margin: 0 auto;
+            width: 100%;
+        }
+        .section-title {
+            text-align: center;
+            color: var(--main-color);
+            font-size: 5.5rem; /* Larger title */
+            margin-bottom: 4rem;
+            text-shadow: 0 0 15px rgba(var(--main-color-rgb), 0.6); /* Stronger glow */
+        }
+        .about-description {
+            text-align: justify;
+            font-size: 1.9rem;
+            line-height: 1.7;
+            margin-bottom: 5rem;
+            color: var(--disable-color);
+            max-width: 900px; /* Limit width for readability */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Larger minmax */
+            gap: 3.5rem; /* Increased gap */
+        }
+        .about-box {
+            background-color: var(--second-bg-color); /* Use second background color */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+            padding: 3rem; /* Increased padding */
+            border-radius: 1.5rem; /* More rounded */
+            transition: transform 0.4s, box-shadow 0.4s;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .about-box:hover {
+            transform: translateY(-1rem) scale(1.02); /* More pronounced lift */
+            box-shadow: 0 1rem 3rem rgba(var(--main-color-rgb), 0.4); /* Deeper, more vibrant shadow */
+            background-color: rgba(var(--main-color-rgb), 0.08); /* Slight main-color tint on hover */
+        }
+        .about-box h3 {
+            color: var(--main-color);
+            font-size: 2.8rem; /* Larger heading in box */
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .about-box ul {
+            padding-left: 0; /* Remove default ul padding */
+            list-style: none; /* Remove bullet points */
+            line-height: 1.8;
+            color: var(--text-color); /* Use text-color */
+            font-size: 1.7rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .about-box ul li {
+            padding-left: 2.5rem; /* Add padding for custom bullet */
+            position: relative;
+        }
+        .about-box ul li::before {
+            content: '•'; /* Custom bullet point */
+            color: var(--main-color);
+            font-size: 2rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Education Section */
+        .education {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 8rem 9% 5rem;
+            background: var(--bg-color);
+        }
+        .heading {
+            font-size: 5.5rem;
+            text-align: center;
+            margin-bottom: 5rem;
+            color: var(--text-color); /* Use text-color */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+        .heading span {
+            color: var(--main-color);
+            text-shadow: 0 0 15px var(--main-color);
+        }
+        .education .education-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5rem;
+            width: 100%;
+            justify-content: center;
+        }
+        .education-row .education-column {
+            flex: 1 1 45rem; /* Adjusted flex basis */
+        }
+        .education-column .title {
+            font-size: 3.5rem;
+            margin: 0 0 2.5rem 1rem;
+            color: var(--main-color);
+            border-bottom: 2px solid var(--main-color);
+            padding-bottom: 0.5rem;
+        }
+        .education-column .education-box{
+            border-left: 0.2rem solid var(--main-color);
+            padding-left: 1.5rem;
+        }
+        .education-box .education-content{
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        .education-box .education-content::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -2.6rem; /* Changed from -1.1rem to -1rem */
+    width: 2rem;
+    height: 2rem;
+    background: var(--main-color);
+    border-radius: 50%;
+    z-index: 1; /* Ensure dot is above line */
+}
+        .education-content .content{
+            position: relative;
+            background: var(--second-bg-color);
+            padding: 2.5rem;
+            border: .2rem solid var(--main-color);
+            border-radius: 0.8rem;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: .5s;
+        }
+        .education-content .content:hover{
+            transform: translateY(-0.5rem);
+            box-shadow: 0 0 1.5rem var(--main-color);
+        }
+        .education-content .content::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(var(--main-color-rgb), 0.1); /* Lighter tint on hover */
+            z-index: -1;
+            transition: .5s;
+        }
+        .education-content .content:hover::before{
+            width: 100%;
+        }
+        .education-content .content .year{
+            font-size: 1.7rem;
+            color: var(--main-color);
+            padding-bottom: 0.8rem;
+            font-weight: 500;
+        }
+        .education-content .content .year i{
+            padding-right: 0.8rem;
+        }
+        .education-content .content h3{
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-color); /* Use text-color */
+        }
+        .education-content .content p{
+            font-size: 1.6rem;
+            line-height: 1.6;
+            color: var(--disable-color);
+        }
+        .toggle-btn {
+            margin-top: 3rem;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: fit-content; /* Adjust width to content */
+        }
+
+        /* Expertise Section */
+        .expertise {
+            padding: 8rem 9% 5rem;
+            background: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align content to top */
+            align-items: center;
+        }
+        .expertise-header {
+            text-align: center;
+            padding-bottom: 4rem;
+            margin-top: 0; /* Already part of section padding */
+            width: 100%;
+        }
+        .expertise-header h1 {
+            font-size: 5.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--main-color);
+            text-shadow: 0 0 15px rgba(var(--main-color-rgb), 0.6);
+        }
+        .expertise-header p {
+            font-size: 2rem;
+            color: var(--disable-color);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .expertise-header .btn-group button {
+            padding: 1.2rem 3rem;
+            border-radius: 3rem;
+            font-size: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            border: 0.2rem solid transparent;
+            margin: 0 1rem; /* Space between buttons */
+            background: var(--second-bg-color);
+            color: var(--text-color); /* Use text-color */
+        }
+        .expertise-header .btn-group button.active {
+            background: var(--main-color);
+            color: var(--bg-color); /* Button text color based on background */
+            box-shadow: 0 0 1.5rem var(--main-color);
+            border-color: var(--main-color);
+        }
+        .expertise-header .btn-group button:hover:not(.active) {
+            background: transparent;
+            color: var(--main-color);
+            box-shadow: 0 0 0.8rem var(--main-color);
+            border-color: var(--main-color);
+        }
+
+        .skills-grid, .certificates-grid {
+            padding: 2rem 0;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .skills-grid h2, .certificates-grid h2 {
+            font-size: 4rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--main-color);
+            text-shadow: 0 0 10px rgba(var(--main-color-rgb), 0.3);
+        }
+        .filter-btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+        .filter-btn, .filter-cert-btn {
+            font-size: 1.6rem;
+            padding: 1rem 2.5rem;
+            border-radius: 2.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: var(--second-bg-color);
+            color: var(--text-color); /* Use text-color */
+            transition: all 0.3s ease;
+            border: 0.1rem solid rgba(255, 255, 255, 0.1);
+        }
+        .filter-btn:hover, .filter-cert-btn:hover {
+            background: var(--main-color);
+            color: var(--bg-color); /* Button text color on hover */
+            box-shadow: 0 0 0.8rem var(--main-color);
+        }
+        .filter-btn.active-filter, .filter-cert-btn.active-filter {
+            background: var(--main-color);
+            color: var(--bg-color); /* Button text color when active */
+            box-shadow: 0 0 1.2rem var(--main-color);
+            border-color: var(--main-color);
+        }
+
+        .skill-card, .cert-card {
+            background-color: var(--second-bg-color);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            border: 0.1rem solid rgba(255, 255, 255, 0.1);
+            display: flex; /* Use flex for internal alignment */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%; /* Ensure cards are same height in grid */
+        }
+        .skill-card:hover, .cert-card:hover {
+            transform: translateY(-1rem) scale(1.02);
+            box-shadow: 0 1rem 2.5rem rgba(var(--main-color-rgb), 0.4);
+            background-color: rgba(var(--main-color-rgb), 0.1);
+        }
+        .skill-card i {
+            font-size: 5.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--main-color); /* Apply main color to icons */
+            text-shadow: 0 0 10px rgba(var(--main-color-rgb), 0.7); /* Glow effect */
+        }
+        .skill-card .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-color); /* Use text-color */
+            margin-bottom: 0.5rem;
+        }
+        .skill-card .level {
+            font-size: 1.6rem;
+            color: var(--disable-color);
+        }
+
+        .cert-card h3 {
+            font-size: 2.2rem; /* Slightly larger title */
+            font-weight: 700;
+            color: var(--main-color);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 8px rgba(var(--main-color-rgb), 0.5);
+
+        }
+        .cert-card p {
+            font-size: 1.5rem; /* Larger description text */
+            color: var(--text-color); /* Use text-color */
+            margin-bottom: 1.5rem;
+            flex-grow: 1; 
+           
+            /* Allow description to take available space */
+        }
+        .cert-card a {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            margin-top: 1rem;
+            font-size: 1.6rem;
+            color: var(--bg-color); /* Button text color */
+            background-color: var(--main-color);
+            border-radius: 0.8rem;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            border: 0.1rem solid var(--main-color);
+            font-weight: 500;
+            text-decoration: none; 
+        }
+        .cert-card a:hover {
+            background-color: transparent;
+            color: var(--main-color);
+            box-shadow: 0 0 1rem var(--main-color);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 8rem 9% 5rem;
+            background: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .project-card {
+            background: var(--second-bg-color);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s, box-shadow 0.4s;
+            border: 0.1rem solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            position: relative; /* Needed for image overlay */
+            overflow: hidden; /* Hide overflow from image overlay */
+        }
+        .project-card:hover {
+            transform: translateY(-1rem);
+            box-shadow: 0 1rem 2.5rem rgba(var(--main-color-rgb), 0.4);
+        }
+        .project-card img {
+            max-width: 100%;
+            height: 200px; /* Fixed height for consistency */
+            object-fit: cover; /* Cover the area */
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease; /* Smooth zoom */
+        }
+        .project-card:hover img {
+            transform: scale(1.05); /* Subtle zoom on hover */
+        }
+        .project-card .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px; /* Same height as image */
+            background: rgba(var(--main-color-rgb), 0.2); /* Semi-transparent main color */
+            border-radius: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none; /* Allow clicks to pass through to underlying elements */
+        }
+        .project-card:hover .image-overlay {
+            opacity: 1;
+        }
+        .project-card h3 {
+            font-size: 2.5rem;
+            color: var(--main-color);
+            margin-bottom: 1rem;
+        }
+        .project-card p {
+            font-size: 1.6rem;
+            color: var(--disable-color);
+            margin-bottom: 1.5rem;
+            flex-grow: 1; /* Allow description to take space */
+            line-height: 1.6;
+        }
+        .project-card .tech-stack {
+            font-size: 1.5rem;
+            color: var(--text-color); /* Use text-color */
+            margin-bottom: 2rem;
+            font-style: italic;
+            padding: 0.5rem 1rem;
+            background-color: var(--bg-color); /* Darker background for tech stack */
+            border-radius: 0.5rem;
+            display: inline-block; /* To apply padding/margin correctly */
+            margin-top: auto; /* Push to bottom */
+        }
+        .project-links a {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            background: var(--main-color);
+            color: var(--bg-color); /* Button text color */
+            border-radius: 3rem;
+            font-size: 1.6rem;
+            margin: 0 0.8rem;
+            transition: 0.3s;
+            font-weight: 500;
+            border: 0.2rem solid var(--main-color);
+        }
+        .project-links a:hover {
+            background: transparent;
+            color: var(--main-color);
+            box-shadow: 0 0 1rem var(--main-color);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 9% 5rem;
+            background: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-form {
+            max-width: 700px;
+            width: 100%;
+            background: var(--second-bg-color);
+            padding: 4rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            border: 0.1rem solid rgba(255, 255, 255, 0.1);
+        }
+        .contact-form h2 {
+            font-size: 3.5rem;
+            color: var(--main-color);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .contact-form .input-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .contact-form .input-box input,
+        .contact-form textarea {
+            flex: 1 1 48%; /* Allow inputs to take roughly half width */
+            padding: 1.5rem;
+            background: var(--bg-color);
+            border-radius: 0.8rem;
+            font-size: 1.7rem;
+            color: var(--text-color); /* Use text-color */
+            border: 0.1rem solid var(--disable-color);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .contact-form .input-box input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--main-color);
+            box-shadow: 0 0 1.2rem rgba(var(--main-color-rgb), 0.5); /* Stronger glow on focus */
+        }
+        .contact-form .input-box input.error,
+        .contact-form textarea.error {
+            border-color: #ff3860; /* Red border for error */
+            box-shadow: 0 0 0.8rem rgba(255, 56, 96, 0.5);
+        }
+        .contact-form .input-box input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--disable-color);
+        }
+        .contact-form textarea {
+            width: 100%; /* Full width for textarea */
+            resize: vertical;
+            min-height: 150px;
+            margin-bottom: 2rem;
+        }
+        .contact-form .btn {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 2rem;
+            background: var(--main-color);
+            color: var(--bg-color); /* Button text color */
+            border: 0.2rem solid var(--main-color);
+            border-radius: 0.8rem; /* Match input border-radius */
+            box-shadow: 0 0 1rem var(--main-color);
+            transition: background 0.5s, color 0.5s, box-shadow 0.5s;
+        }
+        .contact-form .btn:hover {
+            background: transparent;
+            color: var(--main-color);
+            box-shadow: 0 0 2rem var(--main-color); /* More intense glow on hover */
+        }
+        .contact-info {
+            margin-top: 4rem;
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--disable-color);
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* Space out contact details */
+        }
+        .contact-info p {
+            margin-bottom: 0; /* Remove default paragraph margin */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .contact-info p i {
+            font-size: 2.2rem;
+            color: var(--main-color);
+        }
+        .contact-info a {
+            color: var(--main-color);
+            transition: color 0.3s;
+            text-decoration: none; /* Remove default underline */
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+            color: var(--text-color); /* Change color on hover */
+        }
+
+        /* Footer (Optional, but good practice) */
+        .footer {
+            padding: 2rem 9%;
+            background: var(--second-bg-color);
+            color: var(--disable-color);
+            text-align: center;
+            font-size: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Theme Switcher Button and Panel */
+       .theme-switcher-wrapper {
+    position: relative;
+    display: inline-block;
+    z-index: 1000;
+}
+
+        .theme-switcher-icon {
+            background: var(--main-color);
+            color: var(--bg-color);
+            border-radius: 50%;
+            width: 5rem;
+            height: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+            box-shadow: 0 0 1.5rem rgba(var(--main-color-rgb), 0.7);
+            transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .theme-switcher-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 2rem rgba(var(--main-color-rgb), 0.9);
+        }
+
+        .theme-panel {
+            position: absolute;
+            bottom: 6rem; /* Above the icon */
+            right: 0;
+            background: var(--second-bg-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 0 2rem rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column; /* Keep column for overall panel structure */
+            gap: 1rem;
+            transform: translateY(1rem) scale(0.9);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 220px; /* Adjust width for better layout */
+        }
+
+        .theme-panel.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .theme-section-title {
+            font-size: 1.5rem;
+            color: var(--main-color);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            text-align: center;
+            width: 100%;
+        }
+
+        .theme-panel .theme-option {
+            display: flex; /* Ensure flex for alignment */
+            align-items: center;
+            justify-content: flex-start; /* Align text to start */
+            width: 100%; /* Full width for text options */
+            padding: 0.8rem 1.2rem; /* Padding for text options */
+            border-radius: 0.5rem;
+            transition: background 0.2s ease, color 0.2s ease;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .theme-panel .theme-option:hover {
+            background: rgba(var(--main-color-rgb), 0.1);
+            color: var(--main-color);
+        }
+
+        .theme-panel .color-swatch-group { /* New class for the horizontal color boxes container */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem; /* Space between color boxes */
+            width: 100%; /* Ensure it takes full width of panel */
+            justify-content: center; /* Center the color boxes */
+        }
+
+        .theme-panel .color-swatch-group .theme-option { /* Specific styling for color swatch options */
+            width: 4rem; /* Fixed width for circular color swatches */
+            height: 4rem; /* Fixed height for circular color swatches */
+            padding: 0; /* Remove padding */
+            justify-content: center; /* Center the color box within its span */
+            align-items: center;
+            border-radius: 50%; /* Make them circular */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-panel .color-swatch-group .theme-option .theme-color-box {
+            width: 100%; /* Fill the parent span */
+            height: 100%; /* Fill the parent span */
+            border-radius: 50%; /* Ensure inner box is also circular */
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .theme-panel .color-swatch-group .theme-option.selected .theme-color-box {
+            border-color: var(--main-color);
+            box-shadow: 0 0 0.8rem rgba(var(--main-color-rgb), 0.7);
+        }
+
+        .theme-panel .theme-option .theme-color-box {
+            margin-right: 1rem; /* Space between color box and text for base themes */
+        }
+        .theme-panel .color-swatch-group .theme-option .theme-color-box {
+            margin-right: 0; /* No margin for color boxes in this group */
+        }
+
+
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 8rem; /* Adjusted to not overlap with theme switcher */
+            background: var(--main-color);
+            color: var(--bg-color);
+            border-radius: 50%;
+            width: 5rem;
+            height: 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.8rem;
+            cursor: pointer;
+            box-shadow: 0 0 1.5rem rgba(var(--main-color-rgb), 0.7);
+            transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+
+        #back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-0.5rem);
+        }
+
+        #back-to-top:hover {
+            transform: scale(1.1) translateY(-0.5rem);
+            box-shadow: 0 0 2rem rgba(var(--main-color-rgb), 0.9);
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            html {
+                font-size: 55%; /* Adjust base font size for smaller desktops */
+            }
+        }
+        @media (max-width: 991px) {
+            header {
+                padding: 1.5rem 4%; /* Adjust padding for tablets */
+            }
+            section {
+                padding: 10rem 4% 2rem;
+            }
+            .home {
+                flex-direction: column-reverse; /* Image on top on smaller screens */
+                text-align: center;
+            }
+            .home-img {
+                margin-bottom: 4rem;
+            }
+            .home-img .img-box {
+                width: 50vw; /* Larger image on tablet */
+                height: 50vw;
+            }
+            .home-detail h2 {
+                margin-top: 0;
+            }
+            .btn-sci {
+                justify-content: center; /* Center buttons and social icons */
+            }
+            .education-row {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            .education-column {
+                flex: 1 1 100%; /* Full width */
+            }
+            .skills-grid, .certificates-grid, .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Smaller min width for cards */
+            }
+            .about-grid {
+                grid-template-columns: 1fr; /* Stack about boxes on mobile */
+            }
+            .about-description {
+                margin-bottom: 3rem;
+            }
+            #back-to-top {
+                right: 7rem; /* Adjust for smaller screens to avoid theme switcher */
+            }
+        }
+        @media (max-width: 768px) {
+            #menu-icon {
+                display: block;
+            }
+            header nav {
+                position: absolute;
+                top: 100%; /* Below header */
+                left: 0;
+                width: 100%;
+                padding: 1rem 4%;
+                background: var(--second-bg-color);
+                border-top: 0.1rem solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+                display: none; /* Hidden by default */
+                flex-direction: column;
+                text-align: center;
+            }
+            header nav.active {
+                display: flex; /* Show when active */
+            }
+            header nav a {
+                display: block;
+                margin: 1.5rem 0;
+                font-size: 2rem;
+            }
+            .home-img .img-box {
+                width: 65vw; /* Even larger image on mobile */
+                height: 65vw;
+            }
+            .section-title, .heading, .expertise-header h1 {
+                font-size: 4.5rem; /* Smaller headings */
+            }
+            .expertise-header .btn-group button {
+                font-size: 1.8rem;
+                padding: 1rem 2.5rem;
+                margin: 0.5rem;
+            }
+            .filter-btn-group {
+                gap: 1rem;
+            }
+            .filter-btn, .filter-cert-btn {
+                font-size: 1.4rem;
+                padding: 0.8rem 2rem;
+            }
+            .contact-form .input-box {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .theme-switcher-icon {
+                width: 4.5rem;
+                height: 4.5rem;
+                font-size: 2rem;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+            #back-to-top {
+                width: 4.5rem;
+                height: 4.5rem;
+                font-size: 2.4rem;
+                bottom: 1.5rem;
+                right: 6.5rem;
+            }
+            .theme-panel {
+                bottom: 5.5rem; /* Adjust panel position */
+                right: 0;
+                width: 180px; /* Make panel slightly narrower */
+                font-size: 1.4rem;
+            }
+        }
+        @media (max-width: 450px) {
+            html {
+                font-size: 50%; /* Further reduction for very small screens */
+            }
+            .home-detail h1 {
+                font-size: clamp(3rem, 12vw, 4.5rem);
+            }
+            .home-detail h2 {
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+            .btn-sci {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .sci {
+                justify-content: center;
+                margin-top: 1rem;
+            }
+            .about-description {
+                font-size: 1.6rem;
+            }
+            .about-box h3 {
+                font-size: 2.4rem;
+            }
+            .about-box ul li {
+                font-size: 1.5rem;
+            }
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Further adjustment */
+            }
+            #back-to-top {
+                right: 6rem; /* Final adjustment for small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">My-Portfolio</a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <nav>
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#expertise">Expertise</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="theme-switcher-wrapper" style="position: relative; margin-left: 1rem;">
+        <div class="theme-switcher-icon" id="theme-switcher-icon">
+            <i class="bx bxs-cog"></i> <!-- changed from palette to gear -->
+        </div></div>
+    </header>
+
+    <section class="home active" id="home">
+        <div class="home-detail" data-aos="fade-right">
+            <h1>Nethani Rohit Chandra Maharshi</h1>
+            <h2>I'm a 
+                <span style="--i:1;" data-text="Full Stack Developer">Full Stack Developer</span>
+                <span style="--i:2;" data-text="Data Analyst">Data Analyst</span>
+                <span style="--i:3;" data-text="Database Designer">Database Designer</span>
+                <span style="--i:4;" data-text="Software Engineer">Software Engineer</span>
+            </h2>
+            <p>A highly motivated and results-driven Computer Science student with a strong foundation in full-stack development, data analysis, and database design. Eager to leverage technical skills and problem-solving abilities to contribute to innovative projects in a dynamic MNC environment. Committed to continuous learning and delivering impactful solutions through collaborative teamwork.</p>
+            
+            <div class="btn-sci">
+                <a href="resume.pdf" class="btn" target="_blank" download="Nethani_Rohit_Chandra_Maharshi_Resume.pdf">Download CV</a>
+                <div class="sci">
+                    <a href="https://github.com/your-github" target="_blank" aria-label="GitHub Profile"><i class="bx bxl-github"></i></a>
+                    <a href="https://linkedin.com/in/your-linkedin" target="_blank" aria-label="LinkedIn Profile"><i class="bx bxl-linkedin"></i></a>
+                    <a href="https://discord.com/users/your-discord-id" target="_blank" aria-label="Discord Profile"><i class="bx bxl-discord-alt"></i></a>
+                    <a href="https://youtube.com/your-youtube-channel" target="_blank" aria-label="YouTube Channel"><i class="bx bxl-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="home-img" data-aos="fade-left">
+            <div class="img-box">
+                <div class="img-item">
+                    <img src="MAHI.jpg" alt="Nethani Rohit Chandra Maharshi professional photo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container" data-aos="fade-up">
+            <h2 class="section-title">About Me</h2>
+            <p class="about-description">
+                I am <strong>Nethani Rohit Chandra Maharshi</strong>, a passionate and analytical Computer Science student currently pursuing my B.Sc. at Aditya Degree College. My academic journey has equipped me with robust problem-solving capabilities and a strong command over various programming languages and development methodologies. I thrive in challenging environments that encourage innovation and collaboration, consistently seeking opportunities to expand my technical expertise and contribute to high-impact projects. My goal is to leverage cutting-edge technologies to develop scalable and efficient solutions that address real-world business challenges.
+            </p>
+            <div class="about-grid">
+                <div class="about-box" data-aos="zoom-in" data-aos-delay="100">
+                    <h3>Professional Aspirations</h3>
+                    <ul>
+                        <li>Aspiring to contribute to large-scale software development initiatives.</li>
+                        <li>Seeking roles that foster innovation in AI/ML or Data Science.</li>
+                        <li>Committed to developing robust and secure web applications.</li>
+                        <li>Aiming for a career in a globally recognized technology firm.</li>
+                    </ul>
+                </div>
+                <div class="about-box" data-aos="zoom-in" data-aos-delay="200">
+                    <h3>Core Competencies</h3>
+                    <ul>
+                        <li><strong>Problem-solving:</strong> Analytical approach to complex technical challenges.</li>
+                        <li><strong>Teamwork:</strong> Proven ability to collaborate effectively in diverse teams.</li>
+                        <li><strong>Adaptability:</strong> Quick learner of new technologies and frameworks.</li>
+                        <li><strong>Communication:</strong> Clear articulation of technical concepts.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="education" id="education">
+        <h2 class="heading" data-aos="fade-down">My<span>Journey</span></h2>
+        <div class="education-row">
+            <div class="education-column" data-aos="fade-right">
+                <h3 class="title">Education</h3>
+                <div class="education-box">
+                    <div class="education-content">
+                        <div class="content">
+                            <div class="year"><i class="bx bxs-calendar"></i> 2020-2021</div>
+                            <h3>Secondary Education</h3>
+                            <p>Saraswathi Vidya Vihar High School, Visakhapatnam. Achieved strong academic performance with a focus on foundational subjects and computer literacy.</p>
+                        </div>
+                    </div>
+                    <div class="education-content">
+                        <div class="content">
+                            <div class="year"><i class="bx bxs-calendar"></i> 2021-2023</div>
+                            <h3>Intermediate Studies (MPC)</h3>
+                            <p>Narayana Junior College, Visakhapatnam. Specialized in Mathematics, Physics, and Chemistry, laying a strong analytical groundwork for computer science.</p>
+                        </div>
+                    </div>
+                    <div class="education-content">
+                        <div class="content">
+                            <div class="year"><i class="bx bxs-calendar"></i> 2023-2026</div>
+                            <h3>B.Sc. Computer Science</h3>
+                            <p>Aditya Degree College, Visakhapatnam. Currently pursuing a Bachelor of Science in Computer Science, with coursework in Data Structures, Algorithms, Database Management, and Web Technologies. Consistent academic excellence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="education-column" data-aos="fade-left">
+                <h3 class="title">Experience & Workshops</h3>
+                <div class="education-box">
+                    <div id="experience-set-1">
+                        <div class="education-content">
+                            <div class="content">
+                                <div class="year"><i class="bx bxs-calendar"></i> 2024</div>
+                                <h3>Web Development Internship</h3>
+                                <p>Completed a one-month intensive internship, gaining practical experience in front-end development with HTML, CSS, and JavaScript. Contributed to responsive web page design and basic interactive features.</p>
+                            </div>
+                        </div>
+                        <div class="education-content">
+                            <div class="content">
+                                <div class="year"><i class="bx bxs-calendar"></i> 2024</div>
+                                <h3>AI & ML Workshop</h3>
+                                <p>Participated in an advanced workshop covering foundational concepts of Artificial Intelligence and Machine Learning, including hands-on sessions with Python libraries (e.g., TensorFlow, Scikit-learn) for model development and data processing.</p>
+                            </div>
+                        </div>
+                        <div class="education-content">
+                            <div class="content">
+                                <div class="year"><i class="bx bxs-calendar"></i> 2024</div>
+                                <h3>Robotic Process Automation (RPA) Training</h3>
+                                <p>Engaged in a specialized training program focusing on RPA fundamentals and practical application using UiPath. Learned to design and deploy automated workflows for business process optimization.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="experience-set-2" style="display: none;">
+                        
+                        <div class="education-content">
+                            <div class="content">
+                                <div class="year"><i class="bx bxs-calendar"></i> 2025</div>
+                                <h3>DevOps - Hackathon</h3>
+                                <p>Attended an in-depth seminar on relational imization,by learn Devops phases and their advantages </p>
+                            </div>
+                        </div>
+                        <div class="education-content">
+                            <div class="content">
+                                <div class="year"><i class="bx bxs-calendar"></i> 2025</div>
+                                <h3>Quantum Valley Amaravati Hackathon (Team)</h3>
+                                <p>Collaborated with a team to develop a prototype web application within a 24-hour hackathon, demonstrating rapid prototyping, agile development, and effective problem-solving under pressure.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <button id="toggleExperience" class="btn">Show More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="expertise" class="expertise">
+        <div class="expertise-header" data-aos="fade-down">
+            <h1>My <span>Expertise</span></h1>
+            <p>Showcasing my technical proficiencies and professional certifications.</p>
+            <div class="btn-group flex justify-center space-x-6 flex-wrap">
+                <button id="btn-show-skills" class="active">Skills</button>
+                <button id="btn-show-certificates">Certificates</button>
+            </div>
+        </div>
+
+        <div id="skills-content" class="skills-grid" data-aos="fade-up">
+            <h2 class="text-4xl font-bold text-center mb-8" style="color: var(--main-color);">Technical Skills</h2>
+            <div class="filter-btn-group">
+                <button class="filter-btn active-filter" data-category="All">All</button>
+                <button class="filter-btn" data-category="Languages">Languages</button>
+                <button class="filter-btn" data-category="Web Development">Web Development</button>
+                <button class="filter-btn" data-category="Database">Database</button>
+                <button class="filter-btn" data-category="AI/ML">AI/ML</button>
+                <button class="filter-btn" data-category="Tools">Tools</button>
+                <button class="filter-btn" data-category="Soft Skills">Soft Skills</button>
+            </div>
+            <div id="skills-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                </div>
+        </div>
+
+        <div id="certificates-content" class="certificates-grid hidden" data-aos="fade-up">
+            <h2 class="text-4xl font-bold text-center mb-8" style="color: var(--main-color);">Certifications</h2>
+            <div class="filter-btn-group">
+                <button class="filter-cert-btn active-filter" data-category="All">All</button>
+                <button class="filter-cert-btn" data-category="Tech">Tech</button>
+                <button class="filter-cert-btn" data-category="Data Science">Data Science</button>
+                <button class="filter-cert-btn" data-category="Automation">Automation</button>
+                <button class="filter-cert-btn" data-category="AI">AI</button>
+                <button class="filter-cert-btn" data-category="Cybersecurity">Cybersecurity</button>
+                <button class="filter-cert-btn" data-category="Cloud">Cloud</button>
+            </div>
+            <div id="certificates-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="cert-card" data-category="Tech" data-aos="fade-up">
+                    <h3>Cisco - C Programming</h3>
+                    <p>Certified in fundamental concepts and practical application of C programming from Cisco.</p>
+                    <a href="https://www.credly.com/go/your-cisco-c-cert" target="_blank">View Certificate</a>
+                </div>
+                <div class="cert-card" data-category="Tech" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Digital Computer Application</h3>
+                    <p>Certification covering essential principles of computer software and digital systems.</p>
+                    <a href="#" target="_blank">View Certificate</a>
+                </div>
+                <div class="cert-card" data-category="Data Science" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Introduction to SQL (IBM)</h3>
+                    <p>Proficiency in Structured Query Language for database management and querying data from IBM.</p>
+                    <a href="https://www.credly.com/go/your-sql-cert" target="_blank">View Certificate</a>
+                </div>
+                <div class="cert-card" data-category="Web Development" data-aos="fade-up">
+                    <h3>Introduction to Web Development</h3>
+                    <p>Mastery of HTML5, CSS3, and JavaScript fundamentals for building modern web interfaces.</p>
+                    <a href="#" target="_blank">View Certificate</a>
+                </div>
+                <div class="cert-card" data-category="Data Science" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Analyzing Data with Excel (IBM)</h3>
+                    <p>Certified in advanced Excel techniques for data analysis, including pivot tables and complex formulas from IBM.</p>
+                    <a href="https://www.credly.com/go/your-excel-cert" target="_blank">View Certificate</a>
+                </div>
+                <div class="cert-card" data-category="Automation" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Certified Essentials Automation Professional (UiPath)</h3>
+                    <p>Validated skills in Robotic Process Automation using UiPath platform for efficient workflow automation.</p>
+                    <a href="https://www.credly.com/go/your-uipath-cert" target="_blank">View Certificate</a>
+                </div>
+                <div class="cert-card" data-category="AI" data-aos="fade-up">
+                    <h3>Certified Essentials of Generative AI (IBM)</h3>
+                    <p>Foundational understanding and application of Generative Artificial Intelligence concepts from IBM.</p>
+                    <a href="https://www.credly.com/go/your-genai-cert" target="_blank">View Certificate</a>
+                </div>
+                <div class="cert-card" data-category="Cybersecurity" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Cybersecurity Basics (IBM)</h3>
+                    <p>Core knowledge of cybersecurity principles and best practices for securing digital assets from IBM.</p>
+                    <a href="https://courses.edx.org/courses/course-v1:IBM+Cybfun.1.0+2T2023/jump_to/block-v1:IBM+Cybfun.1.0+2T2023+type@problem+block@adfa9bb7da18465b8dcc6d02d79ccba4" class="text-sm underline text-[var(--main-color)]" target="_blank">View Certificate</a>
+                </div>
+                <div class="cert-card" data-category="Cloud" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Introduction to Cloud Computing (IBM)</h3>
+                    <p>Understanding of cloud computing models, services, and deployment strategies from IBM.</p>
+                    <a href="https://www.credly.com/go/your-cloud-cert" target="_blank">View Certificate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2 class="heading" data-aos="fade-down">My <span>Projects</span></h2>
+        <div class="projects-grid">
+            </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="heading" data-aos="fade-down">Contact <span>Me</span></h2>
+        <div class="contact-form" data-aos="fade-up">
+            <h2>Let's Connect!</h2>
+            <form id="contactForm" action="https://formspree.io/f/your-formspree-id" method="POST">
+                <div class="input-box">
+                    <input type="text" name="name" id="contactName" placeholder="Full Name" required>
+                    <input type="email" name="email" id="contactEmail" placeholder="Email Address" required>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="phone" id="contactPhone" placeholder="Mobile Number (Optional)">
+                    <input type="text" name="subject" id="contactSubject" placeholder="Email Subject" required>
+                </div>
+                <textarea name="message" id="contactMessage" cols="30" rows="10" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+        <div class="contact-info" data-aos="fade-up" data-aos-delay="200">
+            <p>Alternatively, you can reach out directly:</p>
+            <p><i class="bx bxs-envelope"></i> Email: <a href="mailto:nethani.rohit@email.com">maharshinethani@gmail.com</a></p>
+            <p><i class="bx bxs-phone"></i> Phone: +91 8500708626</p>
+            <p><i class="bx bxs-location-plus"></i> Location: Visakhapatnam, Andhra Pradesh, India</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 Nethani Rohit Chandra Maharshi. All Rights Reserved.</p>
+    </footer>
+
+   
+        <div class="theme-panel" id="theme-panel">
+            <div class="theme-section-title">Base Theme</div>
+            <span class="theme-option" data-base-theme="dark">
+                <div class="theme-color-box" style="background-color: #0f172a; border-color: #f8fafc;"></div>
+                Dark Mode
+            </span>
+            <span class="theme-option" data-base-theme="light">
+                <div class="theme-color-box" style="background-color: #ffffff; border-color: #1a202c;"></div>
+                Light Mode
+            </span>
+
+            <div class="theme-section-title mt-4">Accent Color</div>
+            <div class="color-swatch-group">
+                <span class="theme-option" data-accent-color="default">
+                    <div class="theme-color-box" style="background-color: #22c55e;"></div>
+                </span>
+                <span class="theme-option" data-accent-color="blue">
+                    <div class="theme-color-box" style="background-color: #3b82f6;"></div>
+                </span>
+                <span class="theme-option" data-accent-color="black-white">
+                    <div class="theme-color-box" style="background-color: #000000; border-color: #ffffff;"></div>
+                </span>
+                <span class="theme-option" data-accent-color="orange">
+                    <div class="theme-color-box" style="background-color: #ff9800;"></div>
+                </span>
+                <span class="theme-option" data-accent-color="pink">
+                    <div class="theme-color-box" style="background-color: #e91e63;"></div>
+                </span>
+                <span class="theme-option" data-accent-color="red">
+                    <div class="theme-color-box" style="background-color: #e53935;"></div>
+                </span>
+                <span class="theme-option" data-accent-color="purple">
+                    <div class="theme-color-box" style="background-color: #9c27b0;"></div>
+                </span>
+                <span class="theme-option" data-accent-color="teal">
+                    <div class="theme-color-box" style="background-color: #009688;"></div>
+                </span>
+                <span class="theme-option" data-accent-color="gold">
+                    <div class="theme-color-box" style="background-color: #ffc107;"></div>
+                </span>
+            </div>
+        </div>
+    <div id="back-to-top">
+        <i class="bx bx-up-arrow-alt"></i>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        // AOS Initialization
+        document.addEventListener("DOMContentLoaded", () => {
+            AOS.init({ duration: 1000, once: true });
+
+            // Apply saved theme on load
+            applySavedTheme();
+            // Render projects dynamically on load
+            renderProjects();
+        });
+
+        // --- Navigation and Section Switching ---
+        const navLinks = document.querySelectorAll("nav a");
+        const sections = document.querySelectorAll("section");
+        const menuIcon = document.getElementById("menu-icon");
+        const navbar = document.querySelector("header nav");
+
+        menuIcon.addEventListener("click", () => {
+            navbar.classList.toggle("active");
+            menuIcon.classList.toggle("bx-x"); // Change icon to 'X'
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener("click", e => {
+                // Close mobile nav when a link is clicked
+                navbar.classList.remove("active");
+                menuIcon.classList.remove("bx-x");
+
+                // Prevent default anchor jump
+                e.preventDefault();
+
+                // Remove 'active' from all nav links and sections
+                navLinks.forEach(link => link.classList.remove("active"));
+                sections.forEach(sec => {
+                    sec.classList.remove("active");
+                    // Reset scroll position for hidden sections
+                    sec.scrollTop = 0; 
+                });
+
+                // Add 'active' to clicked link
+                link.classList.add("active");
+
+                // Get target section and add 'active' class
+                const targetId = link.getAttribute("href").substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.classList.add("active");
+                    // Scroll to the top of the active section (smoothly)
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // --- "Show More" Experience Button ---
+        const toggleBtn = document.getElementById('toggleExperience');
+        const set1 = document.getElementById('experience-set-1');
+        const set2 = document.getElementById('experience-set-2');
+
+        toggleBtn.addEventListener('click', () => {
+            const isSet1Visible = set1.style.display !== 'none';
+
+            if (isSet1Visible) {
+                set1.style.display = 'none';
+                set2.style.display = 'block';
+                toggleBtn.textContent = 'Show Less';
+            } else {
+                set1.style.display = 'block';
+                set2.style.display = 'none';
+                toggleBtn.textContent = 'Show More';
+            }
+            AOS.refresh(); // Refresh AOS after content visibility changes
+        });
+
+        // --- Expertise Section: Skills & Certificates Data and Logic ---
+
+        const skillsData = [
+            // Languages
+            { name: "Python", category: "Languages", icon: "fab fa-python", color: "#3776AB" },
+            { name: "Java", category: "Languages", icon: "fab fa-java", color: "#007396" },
+            { name: "C / C++", category: "Languages", icon: "fas fa-code", color: "#00599C" },
+            { name: "SQL", category: "Languages", icon: "fas fa-database", color: "#4479A1" },
+            { name: "Tkinter", category: "Languages", icon: "fas fa-tkinter", color: "#4479A1" },
+
+            // Web Development
+            { name: "HTML5", category: "Web Development", icon: "fab fa-html5", color: "#E34F26" },
+            { name: "CSS3", category: "Web Development", icon: "fab fa-css3-alt", color: "#1572B6" },
+            { name: "JavaScript", category: "Web Development", icon: "fab fa-js-square", color: "#F7DF1E" },
+            { name: "React.js", category: "Web Development", icon: "fab fa-react", color: "#61DAFB" },
+            { name: "Node.js", category: "Web Development", icon: "fab fa-node-js", color: "#339933" },
+            { name: "Express.js", category: "Web Development", icon: "fas fa-server", color: "#68A063" },
+            { name: "Tailwind CSS", category: "Web Development", icon: "fas fa-wind", color: "#06B6D4" },
+            { name: "Figma", category: "Web Development", icon: "fa-solid fa-flask"},
+
+            // Database
+            { name: "MySQL", category: "Database", icon: "fas fa-database", color: "#4479A1" },
+            { name: "MongoDB", category: "Database", icon: "fas fa-leaf", color: "#47A248" },
+            { name: "PL/SQL", category: "Database", icon: "fas fa-terminal", color: "#DAD8D8" },
+
+            // AI/ML
+            { name: "Machine Learning", category: "AI/ML", icon: "fas fa-brain", color: "#F7931E" },
+            { name: "Artificial Intelligence", category: "AI/ML", icon: "fas fa-robot", color: "#FFD700" },
+            { name: "RPA (UiPath)", category: "AI/ML", icon: "fas fa-robot", color: "#FF6C37" },
+          
+
+            // Tools & Platforms
+            { name: "Git", category: "Tools", icon: "fab fa-git-alt", color: "#F05032" },
+            { name: "GitHub", category: "Tools", icon: "fab fa-github", color: "#181717" },
+            { name: "VS Code", category: "Tools", icon: "fas fa-laptop-code", color: "#007ACC" },
+            { name: "Jupyter", category: "Tools", icon: "fas fa-jupyter", color: "#F37626" },
+            { name: "Power BI", category: "Tools", icon: "fas fa-chart-bar", color: "#F2C811" },
+            { name: "MS Office", category: "Tools", icon: "fas fa-file-alt", color: "#D83B01" },
+
+            // Soft Skills
+            { name: "Problem Solving", category: "Soft Skills", icon: "fas fa-lightbulb", color: "#FFD700" },
+            { name: "Teamwork", category: "Soft Skills", icon: "fas fa-users", color: "#00BFFF" },
+            { name: "Communication", category: "Soft Skills", icon: "fas fa-comments", color: "#22c55e" },
+            { name: "Adaptability", category: "Soft Skills", icon: "fas fa-sync-alt", color: "#9333ea" },
+            { name: "Project Management", category: "Soft Skills", icon: "fas fa-tasks", color: "#6C63FF" }
+        ];
+
+        const skillsContainer = document.getElementById('skills-container');
+        const skillsFilterBtns = document.querySelectorAll('#skills-content .filter-btn');
+
+        function renderSkills(filterCategory = 'All') {
+            skillsContainer.innerHTML = ''; // Clear previous skills
+            const filteredSkills = skillsData.filter(skill => 
+                filterCategory === 'All' || skill.category === filterCategory
+            );
+
+            filteredSkills.forEach((skill, index) => {
+                const skillCard = document.createElement('div');
+                skillCard.classList.add('skill-card');
+                skillCard.setAttribute('data-aos', 'zoom-in'); // Add AOS for individual cards
+                skillCard.setAttribute('data-aos-delay', index * 50); // Stagger animation
+
+                skillCard.innerHTML = `
+                    <i class="${skill.icon}" style="color: ${skill.color};"></i>
+                    <div class="name">${skill.name}</div>
+                    ${skill.level ? `<div class="level">${skill.level}</div>` : ''}
+                `;
+                skillsContainer.appendChild(skillCard);
+            });
+            AOS.refresh(); // Refresh AOS to detect new elements
+        }
+
+        skillsFilterBtns.forEach(button => {
+            button.addEventListener('click', () => {
+                skillsFilterBtns.forEach(btn => btn.classList.remove('active-filter'));
+                button.classList.add('active-filter');
+                renderSkills(button.dataset.category);
+            });
+        });
+
+        // Initial render for skills
+        renderSkills('All');
+
+        // Expertise section toggles (Skills vs Certificates)
+        const btnShowSkills = document.getElementById('btn-show-skills');
+        const btnShowCertificates = document.getElementById('btn-show-certificates');
+        const skillsContent = document.getElementById('skills-content');
+        const certificatesContent = document.getElementById('certificates-content');
+        const certificatesFilterBtns = document.querySelectorAll('#certificates-content .filter-cert-btn');
+        const certificatesContainer = document.getElementById('certificates-container'); // Get the container for certificates
+
+        btnShowSkills.addEventListener('click', () => {
+            btnShowCertificates.classList.remove('active');
+            btnShowSkills.classList.add('active');
+            certificatesContent.classList.add('hidden');
+            skillsContent.classList.remove('hidden');
+            AOS.refresh(); // Refresh AOS when content visibility changes
+        });
+
+        btnShowCertificates.addEventListener('click', () => {
+            btnShowSkills.classList.remove('active');
+            btnShowCertificates.classList.add('active');
+            skillsContent.classList.add('hidden');
+            certificatesContent.classList.remove('hidden');
+            AOS.refresh(); // Refresh AOS when content visibility changes
+        });
+
+        // Certificate Filtering (assuming certificates are static for now, filtering existing elements)
+        certificatesFilterBtns.forEach(button => {
+            button.addEventListener('click', () => {
+                certificatesFilterBtns.forEach(btn => btn.classList.remove('active-filter'));
+                button.classList.add('active-filter');
+                
+                const filterCategory = button.dataset.category;
+                const certCards = certificatesContainer.querySelectorAll('.cert-card');
+
+                certCards.forEach(card => {
+                    if (filterCategory === 'All' || card.dataset.category === filterCategory) {
+                        card.style.display = 'flex'; // Use flex display as defined in CSS
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                AOS.refresh(); // Refresh AOS after filtering
+            });
+        });
+
+        // --- Projects Data and Dynamic Rendering ---
+        const projectsData = [
+            {
+                img: "welcome.png",
+                alt: "E-commerce Web Application Thumbnail",
+                title: "E-commerce Web Application",
+                description: "Developed a  e-commerce platform featuring user authentication, product catalog, shopping cart functionality, and order processing. Emphasized responsive design and scalable architecture.",
+                techStack: "HTML, CSS, JS",
+                githubLink: "https://github.com/your-github/ecommerce-app",
+                liveDemoLink: "#"
+            },
+            {
+                img: "Gemini_Generated_Image_8vm4c8vm4c8vm4c8.png",
+                alt: "VISIONX AI Thumbnail",
+                title: "VisionXAI - AI Event Website",
+                description: "Designed and developed a professional, multi-page website to promote the VisionXAI event, focusing on intuitive navigation and a visually engaging user interface",
+                techStack: "HTML, CSS, JS , REACT, TAILWIND",
+                githubLink: "",
+                liveDemoLink: "#"
+            },
+             {
+                img: "Gemini_Generated_Image_bxafc3bxafc3bxaf.png",
+                alt: "Personal Portfolio Website Thumbnail",
+                title: "Personal Portfolio Website",
+                description: "Designed and developed a responsive personal portfolio website to showcase skills, projects, and educational background. Focused on clean UI/UX and smooth navigation.",
+                techStack: "HTML, CSS, JS",
+                githubLink: "https://github.com/your-github/personal-portfolio",
+                liveDemoLink: "#"
+            },
+            {
+                img: "Gemini_Generated_Image_nxor0onxor0onxor.png",
+                alt: "AI HEALTH CARE Thumbnail",
+                title: "AI Health Care Diagnosis Center",
+                description: "Built an AI-powered Healthcare Diagnostic System for disease prediction, mental health chatbots, and personalized guidance. Integrated nearby hospital & lab locators, emotion & body-part detection, and interactive mind games for overall well-being. Enhanced user experience with AI-driven insights, chatbot support, and dark/light (black & white) mode toggle ",
+                techStack: "HTML, CSS , JS , REACT, TAILWIND",
+                githubLink: "https://github.com/your-github/rpa-data-entry",
+                liveDemoLink: "#" // Or "Demo Video" link
+            },
+             {
+                img: "cropped-Gemini_Generated_Image_lk4nu5lk4nu5lk4n.png",
+                alt: "CAREER AI",
+                title: "Career AI",
+                description: "Unlock your career potential with AI-powered resume analysis, job matching, and tailored recommendations. Prepare with confidence through mock interviews, skill gap insights, and a 24/7 multilingual career chatbot. ",
+                techStack: "HTML, CSS , JS , REACT, TAILWIND,GEMINI API",
+                githubLink: "https://github.com/your-github/rpa-data-entry",
+                liveDemoLink: "#" // Or "Demo Video" link
+            },
+           
+        ];
+
+        const projectsContainer = document.querySelector('.projects-grid');
+
+        function renderProjects() {
+            projectsContainer.innerHTML = ''; // Clear existing projects
+            projectsData.forEach((project, index) => {
+                const projectCard = document.createElement('div');
+                projectCard.classList.add('project-card');
+                projectCard.setAttribute('data-aos', 'fade-up');
+                projectCard.setAttribute('data-aos-delay', index * 100); // Stagger animation
+
+                projectCard.innerHTML = `
+                    <img src="${project.img}" alt="${project.alt}">
+                    <div class="image-overlay"></div>
+                    <h3>${project.title}</h3>
+                    <p>${project.description}</p>
+                    <div class="tech-stack">Technologies: ${project.techStack}</div>
+                    <div class="project-links">
+                        <a href="${project.githubLink}" target="_blank">GitHub</a>
+                        <a href="${project.liveDemoLink}" target="_blank">${project.liveDemoLink.includes('youtube.com') || project.liveDemoLink.includes('youtu.be') ? 'Demo Video' : 'Live Demo'}</a>
+                    </div>
+                `;
+                projectsContainer.appendChild(projectCard);
+            });
+            AOS.refresh(); // Refresh AOS to detect new elements
+        }
+
+        // --- Theme Switcher Logic ---
+        const themeSwitcherIcon = document.getElementById('theme-switcher-icon');
+        const themePanel = document.getElementById('theme-panel');
+        const themeOptions = document.querySelectorAll('.theme-option');
+        const body = document.body;
+        const THEME_BASE_KEY = 'portfolioThemeBase';
+        const THEME_ACCENT_KEY = 'portfolioThemeAccent';
+
+        // Function to apply the selected base theme and accent color
+        function applyTheme(baseTheme, accentColor) {
+            // Remove all existing base theme classes
+            body.classList.remove('base-dark', 'base-light');
+            // Remove all existing accent theme classes
+            body.classList.remove(
+                'accent-default', 'accent-blue', 'accent-black-white',
+                'accent-orange', 'accent-pink', 'accent-red',
+                'accent-purple', 'accent-teal', 'accent-gold' // Added new accent classes
+            );
+
+            // Apply base theme
+            if (baseTheme === 'light') {
+                body.classList.add('base-light');
+            } else {
+                body.classList.add('base-dark'); // Default to dark if not explicitly light
+            }
+
+            // Apply accent color
+            if (accentColor !== 'default') {
+                body.classList.add(`accent-${accentColor}`);
+            }
+
+            localStorage.setItem(THEME_BASE_KEY, baseTheme);
+            localStorage.setItem(THEME_ACCENT_KEY, accentColor);
+            updateSelectedColorBox(baseTheme, accentColor);
+            AOS.refresh();
+        }
+
+        // Function to update the selected color box visually
+        function updateSelectedColorBox(selectedBaseTheme, selectedAccentColor) {
+            themeOptions.forEach(option => {
+                const colorBox = option.querySelector('.theme-color-box');
+                const optionBaseTheme = option.dataset.baseTheme;
+                const optionAccentColor = option.dataset.accentColor;
+
+                // Check for base theme selection
+                if (optionBaseTheme && optionBaseTheme === selectedBaseTheme) {
+                    colorBox.classList.add('selected');
+                } else if (optionBaseTheme) {
+                    colorBox.classList.remove('selected');
+                }
+
+                // Check for accent color selection
+                if (optionAccentColor && optionAccentColor === selectedAccentColor) {
+                    colorBox.classList.add('selected');
+                } else if (optionAccentColor) {
+                    colorBox.classList.remove('selected');
+                }
+            });
+        }
+
+        // Apply saved theme on page load
+        function applySavedTheme() {
+            const savedBaseTheme = localStorage.getItem(THEME_BASE_KEY) || 'dark'; // Default to dark
+            const savedAccentColor = localStorage.getItem(THEME_ACCENT_KEY) || 'default'; // Default to green
+            applyTheme(savedBaseTheme, savedAccentColor);
+        }
+
+        // Toggle theme panel visibility
+        themeSwitcherIcon.addEventListener('click', (event) => {
+            themePanel.classList.toggle('active');
+            event.stopPropagation(); // Prevent click from bubbling to document
+        });
+
+        // Hide theme panel when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!themePanel.contains(event.target) && event.target !== themeSwitcherIcon) {
+                themePanel.classList.remove('active');
+            }
+        });
+
+        // Event listeners for theme options
+        themeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const newAccentColor = option.dataset.accentColor;
+                const newBaseTheme = option.dataset.baseTheme;
+
+                let currentBase = localStorage.getItem(THEME_BASE_KEY) || 'dark';
+                let currentAccent = localStorage.getItem(THEME_ACCENT_KEY) || 'default';
+
+                if (newBaseTheme) { // If it's a base theme toggle
+                    applyTheme(newBaseTheme, currentAccent);
+                } else if (newAccentColor) { // If it's an accent color
+                    applyTheme(currentBase, newAccentColor);
+                }
+                themePanel.classList.remove('active'); // Hide panel after selection
+            });
+        });
+
+        // --- Back to Top Button Logic ---
+        const backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) { // Show button after scrolling 300px
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Smooth scroll to top
+            });
+        });
+
+        // --- Contact Form Validation ---
+        const contactForm = document.getElementById('contactForm');
+        const nameInput = document.getElementById('contactName');
+        const emailInput = document.getElementById('contactEmail');
+        const subjectInput = document.getElementById('contactSubject');
+        const messageTextarea = document.getElementById('contactMessage');
+
+        contactForm.addEventListener('submit', function(event) {
+            let isValid = true;
+
+            // Clear previous error states
+            nameInput.classList.remove('error');
+            emailInput.classList.remove('error');
+            subjectInput.classList.remove('error');
+            messageTextarea.classList.remove('error');
+
+            if (nameInput.value.trim() === '') {
+                nameInput.classList.add('error');
+                isValid = false;
+            }
+            if (emailInput.value.trim() === '' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+                emailInput.classList.add('error');
+                isValid = false;
+            }
+            if (subjectInput.value.trim() === '') {
+                subjectInput.classList.add('error');
+                isValid = false;
+            }
+            if (messageTextarea.value.trim() === '') {
+                messageTextarea.classList.add('error');
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault(); // Prevent form submission if validation fails
+                alert('Please fill in all required fields correctly.'); // Simple alert for demonstration
+            }
+            // If isValid is true, the form will submit normally to Formspree
+        });
+
+    </script>
+</body>
+</html>
